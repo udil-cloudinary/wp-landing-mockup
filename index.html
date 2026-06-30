@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloudinary for WordPress — Landing Page Mockup (Proposed Messaging)</title>
+<style>
+  :root{
+    --cld-blue:#3448c5;
+    --cld-blue-dark:#2436a0;
+    --cld-ink:#0b1437;
+    --cld-slate:#4b5575;
+    --cld-bg:#f5f7fb;
+    --cld-line:#e3e8f2;
+    --cld-amber:#ffb020;
+    --radius:14px;
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--cld-ink);background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+  .review-banner{
+    background:#fff8e6;border-bottom:1px solid #f0dca0;color:#7a5b00;
+    font-size:13px;text-align:center;padding:8px 16px;
+  }
+  .review-banner b{color:#5c4400;}
+
+  /* Header */
+  header.nav{border-bottom:1px solid var(--cld-line);background:#fff;position:sticky;top:0;z-index:10;}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:-.3px;color:var(--cld-ink);}
+  .logo .mark{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--cld-blue),#6a7bff);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;}
+  .nav-links{display:flex;gap:26px;font-size:14px;color:var(--cld-slate);}
+  .nav-links a{color:var(--cld-slate);text-decoration:none;}
+  .nav-links a:hover{color:var(--cld-ink);}
+  .btn{display:inline-block;background:var(--cld-blue);color:#fff;text-decoration:none;font-weight:600;
+    padding:11px 20px;border-radius:9px;font-size:14px;border:none;cursor:pointer;transition:background .15s;}
+  .btn:hover{background:var(--cld-blue-dark);}
+  .btn.ghost{background:#fff;color:var(--cld-blue);border:1.5px solid var(--cld-blue);}
+  .btn.lg{padding:15px 28px;font-size:16px;}
+
+  /* Hero */
+  .hero{background:linear-gradient(180deg,#f5f7fb 0%,#fff 100%);padding:64px 0 48px;}
+  .eyebrow{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+    color:var(--cld-blue);background:#eaedfb;padding:5px 12px;border-radius:20px;margin-bottom:20px;}
+  h1{font-size:48px;line-height:1.08;letter-spacing:-1.2px;margin:0 0 18px;max-width:780px;}
+  h1 .hl{color:var(--cld-blue);}
+  .sub{font-size:20px;color:var(--cld-slate);max-width:640px;margin:0 0 28px;}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
+  .cta-note{font-size:13px;color:var(--cld-slate);margin-top:14px;}
+
+  /* Social proof strip */
+  .proof{border-top:1px solid var(--cld-line);border-bottom:1px solid var(--cld-line);background:#fff;padding:22px 0;}
+  .proof-inner{display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap;text-align:center;}
+  .proof .stat{font-size:15px;color:var(--cld-slate);}
+  .proof .stat b{color:var(--cld-ink);font-size:18px;}
+  .award{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--cld-slate);font-weight:600;}
+  .award .star{color:var(--cld-amber);}
+
+  /* Sections */
+  section{padding:64px 0;}
+  .section-tag{font-size:13px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--cld-blue);margin-bottom:12px;}
+  h2{font-size:34px;letter-spacing:-.6px;margin:0 0 14px;max-width:640px;}
+  .lead{font-size:18px;color:var(--cld-slate);max-width:680px;margin:0 0 36px;}
+
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .card{border:1px solid var(--cld-line);border-radius:var(--radius);padding:26px;background:#fff;}
+  .card .ic{width:44px;height:44px;border-radius:10px;background:#eaedfb;color:var(--cld-blue);
+    display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px;}
+  .card h3{margin:0 0 8px;font-size:18px;}
+  .card p{margin:0;font-size:15px;color:var(--cld-slate);}
+
+  /* DAM feature band */
+  .band{background:var(--cld-ink);color:#fff;}
+  .band .section-tag{color:#9fb0ff;}
+  .band h2{color:#fff;}
+  .band .lead{color:#c2c9e0;}
+  .split{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;}
+  .feature-list{list-style:none;padding:0;margin:24px 0 0;}
+  .feature-list li{display:flex;gap:12px;margin-bottom:16px;font-size:16px;color:#dfe3f2;}
+  .feature-list .chk{color:#7fe0a0;font-weight:700;flex:none;}
+  .visual{background:linear-gradient(135deg,#2436a0,#5a6cff);border-radius:18px;padding:28px;min-height:300px;
+    display:flex;flex-direction:column;gap:14px;box-shadow:0 24px 60px rgba(20,30,80,.4);}
+  .visual .hubrow{display:flex;align-items:center;gap:10px;color:#fff;font-weight:700;font-size:15px;}
+  .visual .dot{width:9px;height:9px;border-radius:50%;background:#7fe0a0;}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+  .chip{background:rgba(255,255,255,.14);color:#fff;border-radius:8px;padding:7px 11px;font-size:13px;font-weight:600;}
+  .channels{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:8px;}
+  .channels .ch{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:12px;font-size:13px;color:#eef1ff;text-align:center;font-weight:600;}
+
+  /* Ecosystem */
+  .eco-note{background:#f5f7fb;border:1px solid var(--cld-line);border-radius:var(--radius);padding:28px 30px;display:flex;gap:20px;align-items:flex-start;}
+  .eco-note .ic{font-size:30px;flex:none;}
+  .eco-note p{margin:0;font-size:16px;color:var(--cld-slate);}
+  .eco-note b{color:var(--cld-ink);}
+  .eco-logos{display:flex;gap:14px;flex-wrap:wrap;margin-top:16px;}
+  .eco-logos span{font-size:13px;font-weight:700;color:var(--cld-slate);background:#fff;border:1px solid var(--cld-line);border-radius:8px;padding:8px 14px;}
+
+  /* Steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;counter-reset:step;}
+  .step{padding:24px;border-radius:var(--radius);background:#f5f7fb;}
+  .step .n{width:34px;height:34px;border-radius:50%;background:var(--cld-blue);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;margin-bottom:14px;}
+  .step h3{margin:0 0 6px;font-size:17px;}
+  .step p{margin:0;font-size:15px;color:var(--cld-slate);}
+
+  /* Final CTA */
+  .final{background:linear-gradient(135deg,var(--cld-blue),#6a7bff);color:#fff;border-radius:22px;padding:56px 40px;text-align:center;margin:40px 0;}
+  .final h2{color:#fff;margin:0 auto 14px;max-width:560px;}
+  .final p{color:#e7e9ff;font-size:18px;max-width:520px;margin:0 auto 28px;}
+  .final .btn{background:#fff;color:var(--cld-blue);}
+  .final .btn:hover{background:#eef1ff;}
+
+  footer{border-top:1px solid var(--cld-line);padding:36px 0;color:var(--cld-slate);font-size:13px;text-align:center;}
+
+  @media(max-width:820px){
+    h1{font-size:34px;}.grid{grid-template-columns:1fr;}.split{grid-template-columns:1fr;gap:28px;}
+    .steps{grid-template-columns:1fr;}.nav-links{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="review-banner">
+  <b>MOCKUP FOR REVIEW</b> — proposed messaging for the Cloudinary WordPress plugin landing page. Layout is illustrative; copy reflects the recommendations.
+</div>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="logo"><span class="mark">☁</span> Cloudinary <span style="font-weight:500;color:var(--cld-slate);font-size:15px;">for WordPress</span></div>
+    <nav class="nav-links">
+      <a href="#performance">Performance</a>
+      <a href="#dam">One library</a>
+      <a href="#ecosystem">Platform</a>
+      <a href="#start">Get started</a>
+    </nav>
+    <a class="btn" href="#start">Sign up free</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">WordPress Plugin · Image &amp; Video</span>
+    <h1>Optimize every image and video, manage them all from <span class="hl">one cloud library</span>, and deliver them fast.</h1>
+    <p class="sub">Automatic optimization, AI-powered transformations, and built-in digital asset management — at any scale. Built for WordPress.</p>
+    <div class="cta-row">
+      <a class="btn lg" href="#start">Sign up free</a>
+      <a class="btn lg ghost" href="#performance">See what it does</a>
+    </div>
+    <p class="cta-note">Free Programmable Media account · Generous usage limits · Set up in minutes with the onboarding wizard.</p>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<div class="proof">
+  <div class="wrap proof-inner">
+    <div class="stat"><b>~2M</b> developers</div>
+    <div class="stat"><b>10,000+</b> companies</div>
+    <div class="award"><span class="star">★</span> MarTech Breakthrough Award — Best WordPress Plugin</div>
+    <div class="stat">Officially recommended by <b>WPML</b></div>
+  </div>
+</div>
+
+<!-- PERFORMANCE -->
+<section id="performance">
+  <div class="wrap">
+    <div class="section-tag">Performance first</div>
+    <h2>Faster pages, better rankings — automatically</h2>
+    <p class="lead">Best-in-class algorithms optimize all your new and existing media, so you improve Core Web Vitals and Lighthouse scores without manual work.</p>
+    <div class="grid">
+      <div class="card">
+        <div class="ic">⚡</div>
+        <h3>Load pages faster</h3>
+        <p>Smart lazy loading and customizable placeholders mean visitors see content sooner — and bounce less.</p>
+      </div>
+      <div class="card">
+        <div class="ic">📱</div>
+        <h3>Look sharp on every device</h3>
+        <p>Cloudinary auto-generates the right size and next-gen format (WebP, AVIF) for each screen and resolution.</p>
+      </div>
+      <div class="card">
+        <div class="ic">✨</div>
+        <h3>Edit at the speed of AI</h3>
+        <p>Smart cropping, thumbnail generation, transcoding, and effects that deepen engagement — in a few clicks.</p>
+      </div>
+      <div class="card">
+        <div class="ic">🎬</div>
+        <h3>Stream rich video</h3>
+        <p>The Cloudinary Video Player with adaptive bitrate streaming (HLS, MPEG-DASH) keeps playback smooth.</p>
+      </div>
+      <div class="card">
+        <div class="ic">🌐</div>
+        <h3>Global CDN built in</h3>
+        <p>Every asset is delivered fast worldwide — no separate CDN setup, headless or UI-based.</p>
+      </div>
+      <div class="card">
+        <div class="ic">🧩</div>
+        <h3>Works with your stack</h3>
+        <p>Compatible with popular page builders and end-to-end support for WooCommerce.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DAM / SINGLE SOURCE OF TRUTH -->
+<section class="band" id="dam">
+  <div class="wrap split">
+    <div>
+      <div class="section-tag">One source of truth</div>
+      <h2>One media library, delivered everywhere</h2>
+      <p class="lead">Stop scattering copies of the same image across posts, themes, and tools. Cloudinary's built-in Digital Asset Management turns your WordPress media library into a window onto a single, cloud-based source of truth.</p>
+      <ul class="feature-list">
+        <li><span class="chk">✓</span> Upload once — organize, search, and reuse across your whole site.</li>
+        <li><span class="chk">✓</span> Every asset automatically optimized and CDN-delivered.</li>
+        <li><span class="chk">✓</span> No duplicates, no re-uploads — your team stays consistent.</li>
+        <li><span class="chk">✓</span> A DAM-powered Media Library, right inside WordPress.</li>
+      </ul>
+    </div>
+    <div class="visual" aria-hidden="true">
+      <div class="hubrow"><span class="dot"></span> Cloudinary DAM — single source of truth</div>
+      <div class="chips">
+        <span class="chip">🖼 hero-banner.jpg</span>
+        <span class="chip">🎬 product-demo.mp4</span>
+        <span class="chip">🖼 logo.svg</span>
+        <span class="chip">🖼 lifestyle-01.jpg</span>
+      </div>
+      <div style="font-size:13px;color:#c9d0f5;margin-top:6px;">Delivered, optimized, to every channel ↓</div>
+      <div class="channels">
+        <div class="ch">WordPress</div>
+        <div class="ch">WooCommerce</div>
+        <div class="ch">Headless / API</div>
+        <div class="ch">Your storefronts</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ECOSYSTEM SYNERGY -->
+<section id="ecosystem">
+  <div class="wrap">
+    <div class="section-tag">Built to grow with you</div>
+    <h2>Your WordPress media doesn't have to live on an island</h2>
+    <p class="lead">Start with WordPress. Expand whenever you're ready.</p>
+    <div class="eco-note">
+      <div class="ic">🔗</div>
+      <div>
+        <p>Because the plugin runs on the same Cloudinary account that powers integrations for <b>Shopify, Salesforce Commerce Cloud, Magento (Adobe Commerce)</b> and more, the assets you manage for WordPress can become the single source of truth across every channel you sell and publish on — <b>no migration, no duplicate libraries.</b></p>
+        <div class="eco-logos">
+          <span>WordPress</span><span>WooCommerce</span><span>Shopify</span><span>Salesforce</span><span>Magento / Adobe Commerce</span><span>commercetools</span><span>+ more</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GETTING STARTED -->
+<section id="start" style="background:#fff;">
+  <div class="wrap">
+    <div class="section-tag">Getting started</div>
+    <h2>Up and running in minutes</h2>
+    <p class="lead">A true plug-and-play solution with an intuitive onboarding wizard.</p>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h3>Create a free account</h3><p>Sign up for a free Cloudinary Programmable Media account with generous usage limits.</p></div>
+      <div class="step"><div class="n">2</div><h3>Connect &amp; sync</h3><p>Add your Cloudinary URL. Your existing media starts syncing automatically.</p></div>
+      <div class="step"><div class="n">3</div><h3>See the gains</h3><p>Media is optimized and delivered via Cloudinary — track results on your dashboard.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<div class="wrap">
+  <div class="final">
+    <h2>Make your WordPress site faster — starting today</h2>
+    <p>Join ~2M developers and 10,000+ companies optimizing and managing media with Cloudinary.</p>
+    <a class="btn lg" href="#">Sign up free</a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    Mockup for internal review · Cloudinary for WordPress · Messaging proposal, June 2026
+  </div>
+</footer>
+
+</body>
+</html>
